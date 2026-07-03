@@ -1,0 +1,1088 @@
+/* ============================================================
+   PORTFOLIO DESIGN SYSTEM
+   Renaissance gallery on putty paper.
+   Warm putty-beige canvas, stark black accents,
+   classical oil-painting imagery. Typography is the protagonist.
+   ============================================================ */
+
+/* ----------------------------------------------------------
+   1. CSS RESET
+   ---------------------------------------------------------- */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+ul,
+ol {
+  list-style: none;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+button {
+  font: inherit;
+  color: inherit;
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
+/* ----------------------------------------------------------
+   2. CUSTOM PROPERTIES
+   ---------------------------------------------------------- */
+:root {
+  /* Colors */
+  --color-putty: #c4c3b6;
+  --color-ink: #000000;
+  --color-bone: #e7e5e4;
+  --color-chalk: #ebebeb;
+  --color-vellum: #dfdcd5;
+  --color-graphite: #595855;
+  --color-ash: #808080;
+  --color-paper: #ffffff;
+
+  /* Fonts */
+  --font-display: 'Playfair Display', serif;
+  --font-body: 'Inter', sans-serif;
+
+  /* Type Scale */
+  --fs-body-sm: 15px;
+  --lh-body-sm: 1.5;
+
+  --fs-subheading: 22px;
+  --lh-subheading: 1.33;
+  --ls-subheading: -0.11px;
+
+  --fs-heading-sm: 26px;
+  --lh-heading-sm: 1.33;
+  --ls-heading-sm: -0.13px;
+
+  --fs-heading: 43px;
+  --lh-heading: 1.1;
+  --ls-heading: -0.215px;
+
+  --fs-heading-lg: 52px;
+  --lh-heading-lg: 1;
+  --ls-heading-lg: -0.47px;
+
+  --fs-display: 374px;
+  --lh-display: 0.84;
+  --ls-display: -3.37px;
+
+  /* Weights */
+  --font-weight-regular: 400;
+  --font-weight-medium: 500;
+
+  /* Spacing */
+  --space-1: 4px;
+  --space-2: 16px;
+  --space-3: 20px;
+  --space-4: 28px;
+  --space-5: 32px;
+  --space-6: 36px;
+  --space-7: 40px;
+  --space-8: 52px;
+  --space-9: 60px;
+  --space-10: 96px;
+  --space-11: 168px;
+
+  /* Layout */
+  --section-gap: 80px;
+  --card-padding: 24px;
+  --element-gap: 6px;
+
+  /* Radii */
+  --radius-sm: 2px;
+  --radius-lg: 9px;
+  --radius-buttons: 28.8px;
+  --radius-cards: 9px;
+
+  /* Surfaces */
+  --surface-putty-canvas: #c4c3b6;
+  --surface-bone-card: #e7e5e4;
+  --surface-chalk-footer: #ebebeb;
+  --surface-ink-room: #000000;
+}
+
+/* ----------------------------------------------------------
+   3. BASE STYLES
+   ---------------------------------------------------------- */
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background-color: var(--color-putty);
+  font-family: var(--font-body);
+  color: var(--color-ink);
+  font-size: 15px;
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+}
+
+img {
+  max-width: 100%;
+  display: block;
+}
+
+::selection {
+  background: var(--color-ink);
+  color: var(--color-paper);
+}
+
+/* ----------------------------------------------------------
+   4. HEADER
+   ---------------------------------------------------------- */
+.header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 100;
+  background-color: rgba(196, 195, 182, 0.85);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  height: 56px;
+  padding: 0 40px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid transparent;
+  transition: border-color 0.3s ease, background-color 0.3s ease;
+}
+
+.header--scrolled {
+  border-bottom-color: var(--color-vellum);
+}
+
+.header__logo {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  border: 1px solid var(--color-ink);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-display);
+  font-size: 14px;
+  font-weight: var(--font-weight-medium);
+  color: var(--color-ink);
+  text-decoration: none;
+  flex-shrink: 0;
+}
+
+.header__nav {
+  display: flex;
+  flex-direction: row;
+  gap: 32px;
+  align-items: center;
+}
+
+.header__nav-link {
+  font-family: var(--font-body);
+  font-size: 11px;
+  font-weight: var(--font-weight-regular);
+  color: var(--color-ink);
+  text-decoration: none;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  transition: all 0.2s ease;
+}
+
+.header__nav-link:hover {
+  text-decoration: underline;
+  text-underline-offset: 4px;
+}
+
+.header__resume-link {
+  font-family: var(--font-body);
+  font-size: 11px;
+  font-weight: var(--font-weight-regular);
+  color: var(--color-ink);
+  text-decoration: none;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  padding: 6px 16px;
+  border-radius: var(--radius-buttons);
+  border: 1px solid transparent;
+  transition: all 0.3s ease;
+}
+
+.header__resume-link:hover {
+  border-color: var(--color-ink);
+}
+
+/* ----------------------------------------------------------
+   5. HERO SECTION
+   ---------------------------------------------------------- */
+.hero {
+  min-height: 100vh;
+  background-color: var(--color-putty);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding-top: 120px;
+  padding-bottom: 80px;
+  overflow: hidden;
+}
+
+.hero__content {
+  text-align: center;
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+.hero__subtitle {
+  font-family: var(--font-body);
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  color: var(--color-graphite);
+  margin-bottom: 28px;
+}
+
+.hero__title {
+  font-family: var(--font-display);
+  font-size: 48px;
+  font-weight: var(--font-weight-medium);
+  letter-spacing: -0.5px;
+  line-height: 1.05;
+  color: var(--color-ink);
+}
+
+.hero__title em,
+.hero__title i,
+.hero__title .italic {
+  font-style: italic;
+}
+
+.hero__tagline {
+  font-family: var(--font-body);
+  font-size: 14px;
+  font-weight: var(--font-weight-regular);
+  color: var(--color-graphite);
+  margin-top: 24px;
+  max-width: 380px;
+  line-height: 1.65;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.hero__stats {
+  display: flex;
+  flex-direction: row;
+  gap: 40px;
+  justify-content: center;
+  margin-top: 28px;
+}
+
+.hero__stat {
+  font-family: var(--font-body);
+  font-size: 13px;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  font-weight: var(--font-weight-medium);
+  color: var(--color-ink);
+}
+
+.hero__stat-sep {
+  font-size: 13px;
+  color: var(--color-ash);
+  user-select: none;
+}
+
+.hero__divider {
+  width: 32px;
+  height: 1px;
+  background-color: var(--color-vellum);
+  margin: 28px auto 0;
+}
+
+.hero__cta {
+  background-color: var(--color-ink);
+  color: var(--color-paper);
+  font-family: var(--font-body);
+  font-size: 11px;
+  font-weight: var(--font-weight-regular);
+  padding: 11px 24px;
+  border-radius: var(--radius-buttons);
+  border: none;
+  cursor: pointer;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  margin-top: 32px;
+  transition: all 0.3s ease;
+  display: inline-block;
+  text-decoration: none;
+}
+
+.hero__cta:hover {
+  background-color: var(--color-graphite);
+}
+
+.hero__wordmark {
+  font-family: var(--font-display);
+  font-size: clamp(60px, 10.5vw, 200px);
+  font-weight: var(--font-weight-medium);
+  letter-spacing: -0.02em;
+  line-height: 0.85;
+  color: var(--color-ink);
+  text-align: center;
+  width: 100%;
+  white-space: nowrap;
+  margin-top: 80px;
+  user-select: none;
+  -webkit-user-select: none;
+  animation: fadeInUp 0.8s ease 0.85s forwards;
+  opacity: 0;
+  position: relative;
+  z-index: 1;
+}
+
+/* ----------------------------------------------------------
+   6. PAINTING PANEL
+   ---------------------------------------------------------- */
+.painting-panel {
+  position: relative;
+  width: 100%;
+  height: clamp(350px, 60vh, 550px);
+  overflow: hidden;
+}
+
+.painting-panel__img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.painting-panel::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border: 1px solid var(--color-vellum);
+  pointer-events: none;
+  opacity: 0.3;
+}
+
+/* Overlap effect — painting creeps over the previous section */
+.painting-panel--overlap {
+  position: relative;
+  z-index: 2;
+  margin-top: -180px;
+  -webkit-mask-image: linear-gradient(to bottom, transparent 0%, black 35%);
+  mask-image: linear-gradient(to bottom, transparent 0%, black 35%);
+}
+
+/* ----------------------------------------------------------
+   7. ABOUT SECTION
+   ---------------------------------------------------------- */
+.about {
+  background-color: var(--surface-ink-room);
+  color: var(--color-paper);
+  padding: 120px 48px;
+}
+
+.about__label {
+  font-family: var(--font-body);
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  color: var(--color-graphite);
+  margin-bottom: 16px;
+}
+
+.about__heading {
+  font-family: var(--font-display);
+  font-size: clamp(52px, 8vw, 94px);
+  font-weight: var(--font-weight-medium);
+  letter-spacing: -0.85px;
+  line-height: 0.84;
+  margin-bottom: 64px;
+  color: var(--color-paper);
+}
+
+.about__content {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 80px;
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+.about__text {
+  font-family: var(--font-body);
+  font-size: 14px;
+  line-height: 1.75;
+  color: rgba(255, 255, 255, 0.8);
+}
+
+.about__text p {
+  margin-bottom: 24px;
+}
+
+.about__text p:last-child {
+  margin-bottom: 0;
+}
+
+.about__highlights {
+  display: flex;
+  flex-direction: column;
+}
+
+.about__highlight {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 14px;
+  margin-bottom: 24px;
+}
+
+.about__highlight:last-child {
+  margin-bottom: 0;
+}
+
+.about__hex {
+  width: 8px;
+  height: 8px;
+  background: transparent;
+  border: 1px solid var(--color-paper);
+  clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
+  flex-shrink: 0;
+}
+
+.about__highlight-text {
+  font-family: var(--font-body);
+  font-size: 14px;
+  color: var(--color-paper);
+  letter-spacing: 0.02em;
+}
+
+/* ----------------------------------------------------------
+   8. PROJECTS SECTION
+   ---------------------------------------------------------- */
+.projects {
+  background-color: var(--color-putty);
+  padding: 120px 48px;
+}
+
+.projects__label {
+  font-family: var(--font-body);
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  color: var(--color-graphite);
+  margin-bottom: 16px;
+  text-align: center;
+}
+
+.projects__heading {
+  font-family: var(--font-display);
+  font-size: clamp(52px, 8vw, 94px);
+  font-weight: var(--font-weight-medium);
+  letter-spacing: -0.85px;
+  line-height: 0.84;
+  text-align: center;
+  margin-bottom: 72px;
+  color: var(--color-ink);
+}
+
+.projects__grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+  gap: 20px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+/* ----------------------------------------------------------
+   9. PROJECT CARD — The critical hover interaction
+   ---------------------------------------------------------- */
+.project-card {
+  position: relative;
+  overflow: hidden;
+  border-radius: 6px;
+  aspect-ratio: 4 / 3;
+  cursor: pointer;
+  container-type: size;
+}
+
+.project-card__image {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  transition: transform 0.5s ease;
+}
+
+.project-card__image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.project-card__overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to top,
+    rgba(0, 0, 0, 0.7) 0%,
+    rgba(0, 0, 0, 0) 50%
+  );
+  transition: background 0.4s ease;
+  z-index: 1;
+}
+
+.project-card__name {
+  position: absolute;
+  left: 24px;
+  right: 24px;
+  top: calc(100% - 56px);
+  font-family: var(--font-display);
+  font-size: 24px;
+  font-weight: var(--font-weight-medium);
+  color: var(--color-paper);
+  z-index: 2;
+  transition: top 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.project-card__details {
+  position: absolute;
+  top: 72px;
+  left: 24px;
+  right: 24px;
+  opacity: 0;
+  transform: translateY(20px);
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1) 0.05s;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.project-card__description {
+  font-family: var(--font-body);
+  font-size: 13px;
+  color: rgba(255, 255, 255, 0.85);
+  line-height: 1.5;
+}
+
+.project-card__tech {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.project-card__tech-tag {
+  font-family: var(--font-body);
+  font-size: 10px;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--color-paper);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  padding: 4px 12px;
+  border-radius: var(--radius-buttons);
+}
+
+.project-card__link {
+  font-family: var(--font-body);
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--color-paper);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  margin-top: 8px;
+  display: inline-block;
+  transition: opacity 0.2s ease;
+}
+
+.project-card__link:hover {
+  opacity: 0.7;
+}
+
+/* Placeholder image styling */
+.project-card__placeholder {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+
+.project-card__initial {
+  font-family: var(--font-display);
+  font-size: 100px;
+  font-weight: var(--font-weight-medium);
+  color: var(--color-paper);
+  opacity: 0.06;
+  user-select: none;
+  line-height: 1;
+}
+
+/* ── HOVER STATE ── */
+.project-card:hover .project-card__image {
+  transform: scale(1.05);
+}
+
+.project-card:hover .project-card__overlay {
+  background: rgba(0, 0, 0, 0.85);
+}
+
+.project-card:hover .project-card__name {
+  top: 24px;
+}
+
+.project-card:hover .project-card__details {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ----------------------------------------------------------
+   10. SKILLS SECTION — Hover Slider Layout
+   ---------------------------------------------------------- */
+.skills {
+  background-color: var(--surface-ink-room);
+  color: var(--color-paper);
+  padding: 120px 48px;
+}
+
+.skills__label {
+  font-family: var(--font-body);
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  color: var(--color-graphite);
+  margin-bottom: 16px;
+  text-align: center;
+}
+
+.skills__heading {
+  font-family: var(--font-display);
+  font-size: clamp(52px, 8vw, 94px);
+  font-weight: var(--font-weight-medium);
+  color: var(--color-paper);
+  text-align: center;
+  margin-bottom: 72px;
+  letter-spacing: -0.85px;
+  line-height: 0.84;
+}
+
+/* Two-column layout: category names left, card right */
+.skills__layout {
+  display: flex;
+  gap: 60px;
+  max-width: 750px;
+  margin: 0 auto;
+  align-items: center;
+  justify-content: center;
+}
+
+.skills__categories {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  flex-shrink: 0;
+}
+
+.skills__content-area {
+  flex-shrink: 0;
+  width: 320px;
+}
+
+/* ── Text Stagger Hover Animation ── */
+.text-stagger {
+  position: relative;
+  display: inline-block;
+  transform-origin: bottom;
+  overflow: hidden;
+  cursor: pointer;
+  font-family: var(--font-display);
+  font-size: clamp(32px, 4vw, 52px);
+  font-weight: var(--font-weight-medium);
+  color: var(--color-paper);
+  text-transform: uppercase;
+  letter-spacing: -0.02em;
+  line-height: 1.15;
+}
+
+.text-stagger__char {
+  position: relative;
+  display: inline-block;
+  overflow: hidden;
+}
+
+.text-stagger__char-ghost {
+  display: inline-block;
+  opacity: 0.2;
+}
+
+.text-stagger__char-real {
+  position: absolute;
+  left: 0;
+  top: 0;
+  display: inline-block;
+  opacity: 1;
+}
+
+/* ── Hover Slider Content (scroll-up reveal) ── */
+.hover-slider-content-wrap {
+  display: grid;
+  overflow: hidden;
+  border-radius: 16px;
+  width: 100%;
+  position: relative;
+  background: radial-gradient(ellipse at center, rgba(255,255,255,0.04) 0%, transparent 70%);
+}
+
+.hover-slider-content-wrap > * {
+  grid-column: 1 / -1;
+  grid-row: 1 / -1;
+  width: 100%;
+  height: 100%;
+}
+
+.hover-slider-content {
+  width: 100%;
+  height: 100%;
+}
+
+/* ── Skill Card (shown on hover) ── */
+.skill-card {
+  padding: 32px 24px;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.skill-card__items {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  justify-content: center;
+  align-content: center;
+}
+
+.skill-card__tag {
+  font-family: var(--font-body);
+  font-size: 12px;
+  color: var(--color-paper);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  padding: 8px 18px;
+  border-radius: var(--radius-buttons);
+  transition: all 0.3s ease;
+  background: transparent;
+}
+
+.skill-card__tag:hover {
+  border-color: var(--color-paper);
+  background: rgba(255, 255, 255, 0.08);
+}
+
+/* ----------------------------------------------------------
+   11. CONTACT SECTION
+   ---------------------------------------------------------- */
+.contact {
+  background-color: var(--color-bone);
+  padding: 120px 48px;
+  text-align: center;
+}
+
+.contact__label {
+  font-family: var(--font-body);
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  color: var(--color-graphite);
+  margin-bottom: 16px;
+}
+
+.contact__heading {
+  font-family: var(--font-display);
+  font-size: clamp(52px, 8vw, 94px);
+  font-weight: var(--font-weight-medium);
+  color: var(--color-ink);
+  margin-bottom: 20px;
+  letter-spacing: -0.85px;
+  line-height: 0.84;
+}
+
+.contact__subtext {
+  font-family: var(--font-body);
+  font-size: 14px;
+  color: var(--color-graphite);
+  max-width: 500px;
+  margin: 0 auto 48px;
+  line-height: 1.65;
+}
+
+.contact__links {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
+.contact__link {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-family: var(--font-body);
+  font-size: 13px;
+  color: var(--color-ink);
+  text-decoration: none;
+  border: 1px solid var(--color-vellum);
+  padding: 11px 22px;
+  border-radius: var(--radius-buttons);
+  transition: all 0.3s ease;
+}
+
+.contact__link:hover {
+  background-color: var(--color-ink);
+  color: var(--color-paper);
+  border-color: var(--color-ink);
+}
+
+.contact__link:hover .contact__link-icon {
+  color: var(--color-paper);
+}
+
+.contact__link-icon {
+  width: 16px;
+  height: 16px;
+  transition: color 0.3s ease;
+  flex-shrink: 0;
+}
+
+/* ----------------------------------------------------------
+   12. FOOTER
+   ---------------------------------------------------------- */
+.footer {
+  background-color: var(--color-chalk);
+  padding: 52px 40px;
+  text-align: center;
+}
+
+.footer__wordmark {
+  font-family: var(--font-display);
+  font-size: 20px;
+  font-weight: var(--font-weight-medium);
+  color: var(--color-ink);
+  margin-bottom: 12px;
+  letter-spacing: -0.01em;
+}
+
+.footer__text {
+  font-family: var(--font-body);
+  font-size: 11px;
+  color: var(--color-graphite);
+  letter-spacing: 0.08em;
+}
+
+/* ----------------------------------------------------------
+   13. ANIMATIONS
+   ---------------------------------------------------------- */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.animate-fade-in-up {
+  animation: fadeInUp 0.8s ease forwards;
+}
+
+.animate-delay-1 {
+  animation-delay: 0.1s;
+}
+
+.animate-delay-2 {
+  animation-delay: 0.2s;
+}
+
+.animate-delay-3 {
+  animation-delay: 0.3s;
+}
+
+/* Staggered entrance — elements start invisible when using delay */
+.animate-delay-1,
+.animate-delay-2,
+.animate-delay-3 {
+  opacity: 0;
+}
+
+/* ----------------------------------------------------------
+   14. SCROLL REVEAL ANIMATIONS
+   ---------------------------------------------------------- */
+.reveal {
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity 1s cubic-bezier(0.4, 0, 0.2, 1),
+              transform 1s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.reveal.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ----------------------------------------------------------
+   15. RESPONSIVE DESIGN
+   ---------------------------------------------------------- */
+@media (max-width: 768px) {
+  /* Header */
+  .header {
+    padding: 0 20px;
+  }
+
+  /* Hero */
+  .hero {
+    padding-top: 100px;
+  }
+
+  .hero__title {
+    font-size: clamp(32px, 8vw, 52px);
+  }
+
+  .hero__wordmark {
+    font-size: clamp(40px, 9vw, 150px);
+    margin-top: 40px;
+  }
+
+  .hero__stats {
+    gap: 16px;
+    flex-wrap: wrap;
+  }
+
+  /* About */
+  .about {
+    padding: 80px 20px;
+  }
+
+  .about__heading {
+    font-size: clamp(40px, 10vw, 94px);
+    margin-bottom: 36px;
+  }
+
+  .about__content {
+    grid-template-columns: 1fr;
+    gap: 40px;
+  }
+
+  /* Projects */
+  .projects {
+    padding: 80px 20px;
+  }
+
+  .projects__grid {
+    grid-template-columns: 1fr;
+  }
+
+  .project-card__name {
+    font-size: 22px;
+  }
+
+  /* Skills */
+  .skills {
+    padding: 80px 20px;
+  }
+
+  .skills__layout {
+    flex-direction: column;
+    gap: 40px;
+    align-items: center;
+  }
+
+  .skills__categories {
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 8px;
+    justify-content: center;
+  }
+
+  .text-stagger {
+    font-size: clamp(20px, 5vw, 28px);
+  }
+
+  .skills__content-area {
+    width: 100%;
+  }
+
+  .skill-card {
+    padding: 24px 16px;
+  }
+
+  /* Contact */
+  .contact {
+    padding: 80px 20px;
+  }
+
+  .contact__links {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .contact__link {
+    width: 100%;
+    max-width: 300px;
+    justify-content: center;
+  }
+
+  /* Footer */
+  .footer {
+    padding: 32px 20px;
+  }
+}
+
+/* Additional breakpoint for very small screens */
+@media (max-width: 480px) {
+  .hero__title {
+    font-size: 28px;
+  }
+
+  .hero__wordmark {
+    font-size: clamp(28px, 8vw, 80px);
+  }
+
+  .about__heading,
+  .projects__heading,
+  .skills__heading,
+  .contact__heading {
+    font-size: clamp(36px, 10vw, 52px);
+  }
+
+  .header__nav {
+    gap: 16px;
+  }
+
+  .header__nav-link {
+    font-size: 11px;
+  }
+}
