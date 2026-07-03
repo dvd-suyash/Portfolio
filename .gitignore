@@ -23,5 +23,6 @@ dist-ssr
 *.sln
 *.sw?
 
-# Vercel
+# Vercel and AI Agent files
 .vercel
+.agent
