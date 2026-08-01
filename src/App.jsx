@@ -14,6 +14,8 @@ import GlobalScrollLine from './components/GlobalScrollLine';
 import Preloader from './components/Preloader';
 import { MagneticCursor } from './components/MagneticCursor';
 
+export let appHasLoaded = false;
+
 const App = () => {
   const [isAboutOpen, setIsAboutOpen] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
@@ -128,7 +130,10 @@ const App = () => {
       blendMode="exclusion" 
       cursorSize={40}
     >
-      {isLoading && <Preloader onComplete={() => setIsLoading(false)} />}
+      {isLoading && <Preloader onComplete={() => {
+        setIsLoading(false);
+        appHasLoaded = true;
+      }} />}
       
       <div style={{ display: 'flex', flexDirection: 'column', minHeight: '100vh' }}>
         <motion.div

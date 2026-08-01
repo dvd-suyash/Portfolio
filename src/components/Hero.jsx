@@ -5,6 +5,7 @@ import AnimatedCounter from './AnimatedCounter';
 import { motion } from 'framer-motion';
 import { useNavigate } from 'react-router-dom';
 import GenerativeMountainScene from './ui/mountain-scene';
+import { appHasLoaded } from '../App';
 
 const Hero = ({ onOpenAbout, isDarkMode }) => {
   const navigate = useNavigate();
@@ -14,7 +15,7 @@ const Hero = ({ onOpenAbout, isDarkMode }) => {
     navigate('/projects');
   };
 
-  const isFirstVisit = !sessionStorage.getItem('hasLoaded');
+  const isFirstVisit = !appHasLoaded;
   const [canAnimate, setCanAnimate] = useState(!isFirstVisit);
 
   useEffect(() => {
