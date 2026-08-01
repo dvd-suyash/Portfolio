@@ -43,7 +43,7 @@ button {
   --color-putty: #e0f2fe;
   --color-ink: #0f172a;
   --color-bone: #bae6fd;
-  --color-chalk: #7dd3fc;
+  --color-chalk: #064e3b;
   --color-vellum: #38bdf8;
   --color-graphite: #475569;
   --color-ash: #64748b;
@@ -53,7 +53,7 @@ button {
   /* Surfaces - Light Mode */
   --surface-putty-canvas: #e0f2fe;
   --surface-bone-card: #bae6fd;
-  --surface-chalk-footer: #7dd3fc;
+  --surface-chalk-footer: #064e3b;
   --surface-ink-room: #0f172a;
 
   /* Fonts */
@@ -1185,7 +1185,7 @@ img {
   font-family: var(--font-display);
   font-size: 20px;
   font-weight: var(--font-weight-medium);
-  color: var(--color-ink);
+  color: #ffffff;
   margin-bottom: 12px;
   letter-spacing: -0.01em;
 }
@@ -1193,7 +1193,7 @@ img {
 .footer__text {
   font-family: var(--font-body);
   font-size: 11px;
-  color: var(--color-graphite);
+  color: rgba(255, 255, 255, 0.7);
   letter-spacing: 0.08em;
 }
 
