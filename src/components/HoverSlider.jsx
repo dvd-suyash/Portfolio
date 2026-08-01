@@ -42,6 +42,11 @@ export const TextStaggerHover = forwardRef(({ text, index, className, ...props }
       className={`text-stagger ${className || ''}`}
       ref={ref}
       onMouseEnter={handleMouse}
+      onClick={handleMouse}
+      onFocus={handleMouse}
+      onKeyDown={(e) => e.key === 'Enter' && handleMouse()}
+      tabIndex="0"
+      role="button"
       {...props}
     >
       {characters.map((char, i) => (

@@ -1,61 +1,115 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
+import { motion } from 'framer-motion';
 import projects from '../data/projects';
+import ThreeCube from './ThreeCube';
 
-const CARD_GRADIENTS = [
-  'linear-gradient(135deg, #2d2d2d 0%, #4a4a4a 100%)',
-  'linear-gradient(135deg, #3d2b1f 0%, #5c4033 100%)',
-  'linear-gradient(135deg, #1a1a2e 0%, #16213e 100%)',
-  'linear-gradient(135deg, #2d3436 0%, #636e72 100%)',
-  'linear-gradient(135deg, #1e272e 0%, #485460 100%)',
-  'linear-gradient(135deg, #2c2c54 0%, #474787 100%)',
-];
+function splitText(text) {
+  const words = text.split(' ').map((word) => word.concat(' '));
+  const characters = words.map((word) => word.split('')).flat(1);
+  return { words, characters };
+}
 
-const ProjectCard = ({ project, index }) => {
-  const initial = project.name.charAt(0);
-
+const ProjectNameTumble = ({ text, isActive }) => {
+  const { characters } = splitText(text);
   return (
-    <div className="project-card reveal">
-      <div className="project-card__image">
-        {project.image ? (
-          <img src={project.image} alt={project.name} />
-        ) : (
-          <div
-            className="project-card__placeholder"
-            style={{ background: CARD_GRADIENTS[index % CARD_GRADIENTS.length] }}
+    <h3 className="text-stagger projects__list-name">
+      {characters.map((char, i) => (
+        <span key={`${char}-${i}`} className="text-stagger__char">
+          <motion.span
+            className="text-stagger__char-ghost"
+            initial={{ y: '0%' }}
+            animate={isActive ? { y: '-110%' } : { y: '0%' }}
+            transition={{ delay: i * 0.025, duration: 0.3, ease: [0.25, 0.46, 0.45, 0.94] }}
           >
-            <span className="project-card__initial">{initial}</span>
-          </div>
-        )}
-      </div>
-      <div className="project-card__overlay" />
-      <h3 className="project-card__name">{project.name}</h3>
-      <div className="project-card__details">
-        <p className="project-card__description">{project.description}</p>
-        <div className="project-card__tech">
-          {project.tech.map((t) => (
-            <span className="project-card__tech-tag" key={t}>
-              {t}
-            </span>
-          ))}
-        </div>
-        <a href={project.link} className="project-card__link">
-          View Project →
-        </a>
-      </div>
-    </div>
+            {char === ' ' ? '\u00A0' : char}
+          </motion.span>
+          <motion.span
+            className="text-stagger__char-real"
+            initial={{ y: '110%' }}
+            animate={isActive ? { y: '0%' } : { y: '110%' }}
+            transition={{ delay: i * 0.025, duration: 0.3, ease: [0.25, 0.46, 0.45, 0.94] }}
+          >
+            {char === ' ' ? '\u00A0' : char}
+          </motion.span>
+        </span>
+      ))}
+    </h3>
   );
 };
 
 const Projects = () => {
+  const [activeIndex, setActiveIndex] = useState(0);
+  const [isHovering, setIsHovering] = useState(false);
+  const [isDragging, setIsDragging] = useState(false);
+  const [dragOffset, setDragOffset] = useState({ x: 0, y: 0 });
+
+  useEffect(() => {
+    let interval;
+    if (!isHovering && !isDragging) {
+      interval = setInterval(() => {
+        setActiveIndex((current) => (current + 1) % projects.slice(0, 6).length);
+      }, 3000); // 3 seconds feels more relaxed for a 3D showcase
+    }
+    return () => clearInterval(interval);
+  }, [isHovering, isDragging]);
+
+  const displayedProjects = projects.slice(0, 6);
+
   return (
     <section className="projects" id="projects">
-      <p className="projects__label reveal">SELECTED WORKS</p>
-      <h2 className="projects__heading reveal">PROJECTS</h2>
+      <div className="projects__header reveal">
+        <p className="projects__label">SELECTED WORKS</p>
+        <h2 className="projects__heading">PROJECTS</h2>
+      </div>
 
-      <div className="projects__grid">
-        {projects.map((project, index) => (
-          <ProjectCard key={project.id} project={project} index={index} />
-        ))}
+      <div 
+        className="projects__container reveal"
+      >
+        {/* Left Side: Project Index */}
+        <div 
+          className="projects__list"
+          onMouseEnter={() => setIsHovering(true)}
+          onMouseLeave={() => setIsHovering(false)}
+        >
+          {displayedProjects.map((project, index) => (
+            <div
+              key={project.id}
+              data-magnetic
+              className={`projects__list-item ${index === activeIndex ? 'active' : ''}`}
+              onMouseEnter={() => setActiveIndex(index)}
+            >
+              <span className="projects__list-num">0{index + 1}</span>
+              <ProjectNameTumble text={project.name} isActive={index === activeIndex} />
+            </div>
+          ))}
+        </div>
+
+        <motion.div 
+          className="projects__stage"
+          onPanStart={() => {
+            setIsDragging(true);
+            document.body.style.userSelect = 'none';
+            document.body.style.webkitUserSelect = 'none';
+          }}
+          onPan={(e, info) => {
+            setDragOffset({ x: info.offset.x, y: info.offset.y });
+          }}
+          onPanEnd={() => {
+            setIsDragging(false);
+            setDragOffset({ x: 0, y: 0 });
+            document.body.style.userSelect = '';
+            document.body.style.webkitUserSelect = '';
+          }}
+          style={{ touchAction: 'none' }}
+        >
+          <ThreeCube 
+            projects={displayedProjects}
+            activeIndex={activeIndex}
+            isDragging={isDragging}
+            dragOffset={dragOffset}
+            isHovering={isHovering}
+          />
+        </motion.div>
       </div>
     </section>
   );
