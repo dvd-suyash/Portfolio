@@ -153,7 +153,7 @@ function CubeMesh({ projects, activeIndex, isDragging, dragOffset, isHovering })
 export default function ThreeCube({ projects, activeIndex, isDragging, dragOffset, isHovering }) {
   return (
     <div style={{ width: '150%', height: '150%', position: 'absolute', top: '-25%', left: '-25%' }}>
-      <Canvas camera={{ position: [0, 0, 13], fov: 40 }} dpr={[1, 2]}>
+      <Canvas camera={{ position: [0, 0, 13], fov: 40 }} dpr={[1, 1.5]}>
         <ambientLight intensity={1.5} />
         <directionalLight position={[5, 10, 5]} intensity={2.5} color="#ffffff" />
         <directionalLight position={[-5, -10, -5]} intensity={1.5} color="#c4c3b6" /> 
@@ -177,6 +177,7 @@ export default function ThreeCube({ projects, activeIndex, isDragging, dragOffse
           scale={15} 
           blur={3.5} 
           far={6} 
+          resolution={256}
           color="#000000"
         />
       </Canvas>

@@ -29,11 +29,13 @@ export function GenerativeMountainScene({ isDarkMode }) {
 
     const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
     renderer.setSize(currentMount.clientWidth, currentMount.clientHeight);
-    renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+    // Optimization: Cap pixel ratio to save GPU
+    renderer.setPixelRatio(Math.min(window.devicePixelRatio, 1.5));
     currentMount.appendChild(renderer.domElement);
 
     // GEOMETRY
-    const geometry = new THREE.PlaneGeometry(12, 8, 128, 128); 
+    // Optimization: Reduced from 128x128 to 64x64 to massively save vertices
+    const geometry = new THREE.PlaneGeometry(12, 8, 64, 64); 
 
     // SHADER MATERIAL
     const initialColor = isDarkMode ? "#7dd3fc" : "#22c55e";
@@ -150,12 +152,22 @@ export function GenerativeMountainScene({ isDarkMode }) {
     scene.add(pointLight);
 
     let frameId;
+    let isVisible = true;
+
+    // Optimization: Only render when visible on screen
+    const observer = new IntersectionObserver((entries) => {
+      isVisible = entries[0].isIntersecting;
+    });
+    observer.observe(currentMount);
+
     const animate = (t) => {
+      frameId = requestAnimationFrame(animate);
+      if (!isVisible) return; // Pause GPU processing when scrolled out of view
+      
       material.uniforms.time.value = t * 0.0003;
       renderer.render(scene, camera);
-      frameId = requestAnimationFrame(animate);
     };
-    animate(0);
+    frameId = requestAnimationFrame(animate);
 
     const handleResize = () => {
       if (!currentMount) return;
@@ -182,6 +194,7 @@ export function GenerativeMountainScene({ isDarkMode }) {
 
     return () => {
       cancelAnimationFrame(frameId);
+      observer.disconnect();
       window.removeEventListener("resize", handleResize);
       window.removeEventListener("mousemove", handleMouseMove);
       if (currentMount) currentMount.removeChild(renderer.domElement);
