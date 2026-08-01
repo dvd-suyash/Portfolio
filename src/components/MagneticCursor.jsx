@@ -314,9 +314,14 @@ export const MagneticCursor = ({
     WebkitBackdropFilter: contrastBoost !== 1 ? `contrast(${contrastBoost})` : 'none',
   };
 
+  if (disableOnTouch && isTouchDevice) {
+    return <>{children}</>;
+  }
+
   return (
     <>
-      <div ref={cursorRef} className={`magnetic-cursor ${cursorClassName}`} style={styles} />
+      <div 
+        ref={cursorRef} className={`magnetic-cursor ${cursorClassName}`} style={styles} />
       {children}
     </>
   );
