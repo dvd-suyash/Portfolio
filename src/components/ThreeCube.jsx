@@ -125,22 +125,12 @@ function CubeMesh({ projects, activeIndex, isDragging, dragOffset, isHovering })
                 style={{ width: '100%', height: '100%', position: 'relative', overflow: 'hidden' }}
               >
                 {project.image ? (
-                  <img src={project.image} alt={project.name} className="cube__image" style={{ width: '100%', height: '100%', objectFit: 'cover', pointerEvents: 'none' }} />
+                  <img src={project.image} alt={project.name} className="cube__image" style={{ width: '100%', height: '100%', objectFit: 'contain', padding: '2rem', pointerEvents: 'none' }} />
                 ) : (
                   <div className="cube__placeholder" style={{ background: CARD_GRADIENTS[i % CARD_GRADIENTS.length], width: '100%', height: '100%', display: 'flex', alignItems: 'center', justifyContent: 'center', pointerEvents: 'none' }}>
                     <span className="cube__initial" style={{ fontSize: '100px', fontWeight: '800', color: 'white', opacity: 0.1 }}>{initial}</span>
                   </div>
                 )}
-                <div className="cube__overlay" style={{ pointerEvents: 'none', background: 'linear-gradient(to top, rgba(0,0,0,0.9) 0%, rgba(0,0,0,0.2) 60%, transparent 100%)' }} />
-                <div className="cube__details" style={{ pointerEvents: 'none' }}>
-                  <p className="cube__desc" style={{ fontSize: '0.85rem', lineHeight: '1.4' }}>{project.description}</p>
-                  <div className="cube__tech">
-                    {project.tech.map((t) => (
-                      <span key={t} className="cube__tech-tag" style={{ background: 'rgba(255,255,255,0.1)', backdropFilter: 'blur(5px)', border: '1px solid rgba(255,255,255,0.1)' }}>{t}</span>
-                    ))}
-                  </div>
-                  <a href={project.link} className="cube__link" style={{ pointerEvents: 'auto', cursor: 'none' }}>View Project →</a>
-                </div>
               </div>
             </Html>
           );

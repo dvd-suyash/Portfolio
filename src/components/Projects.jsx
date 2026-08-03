@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { motion } from 'framer-motion';
+import { motion, AnimatePresence } from 'framer-motion';
 import projects from '../data/projects';
 import ThreeCube from './ThreeCube';
 
@@ -42,6 +42,7 @@ const Projects = () => {
   const [isHovering, setIsHovering] = useState(false);
   const [isDragging, setIsDragging] = useState(false);
   const [dragOffset, setDragOffset] = useState({ x: 0, y: 0 });
+  const [selectedProject, setSelectedProject] = useState(null);
 
   useEffect(() => {
     let interval;
@@ -77,6 +78,7 @@ const Projects = () => {
               data-magnetic
               className={`projects__list-item ${index === activeIndex ? 'active' : ''}`}
               onMouseEnter={() => setActiveIndex(index)}
+              onClick={() => setSelectedProject(project)}
             >
               <span className="projects__list-num">0{index + 1}</span>
               <ProjectNameTumble text={project.name} isActive={index === activeIndex} />
@@ -110,6 +112,42 @@ const Projects = () => {
             isHovering={isHovering}
           />
         </motion.div>
+
+        {/* Elegant UI UX Pro Max Modal for Project Details */}
+        <AnimatePresence>
+          {selectedProject && (
+            <motion.div 
+              className="project-modal-overlay"
+              initial={{ opacity: 0, backdropFilter: "blur(0px)" }}
+              animate={{ opacity: 1, backdropFilter: "blur(12px)" }}
+              exit={{ opacity: 0, backdropFilter: "blur(0px)" }}
+              onClick={() => setSelectedProject(null)}
+            >
+              <motion.div 
+                className="project-modal"
+                initial={{ y: 60, opacity: 0, scale: 0.95 }}
+                animate={{ y: 0, opacity: 1, scale: 1 }}
+                exit={{ y: 30, opacity: 0, scale: 0.95 }}
+                transition={{ type: "spring", damping: 25, stiffness: 300 }}
+                onClick={(e) => e.stopPropagation()}
+              >
+                <button className="project-modal__close" onClick={() => setSelectedProject(null)} aria-label="Close modal">×</button>
+                <h3 className="project-modal__title">{selectedProject.name}</h3>
+                <p className="project-modal__desc">{selectedProject.description}</p>
+                <div className="project-modal__tech">
+                  {selectedProject.tech.map((t) => (
+                    <span key={t} className="project-modal__tag">{t}</span>
+                  ))}
+                </div>
+                {selectedProject.link !== '#' && (
+                  <a href={selectedProject.link} target="_blank" rel="noopener noreferrer" className="project-modal__link">
+                    View Live Project →
+                  </a>
+                )}
+              </motion.div>
+            </motion.div>
+          )}
+        </AnimatePresence>
       </div>
     </section>
   );
