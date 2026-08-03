@@ -125,7 +125,7 @@ function CubeMesh({ projects, activeIndex, isDragging, dragOffset, isHovering })
                 style={{ width: '100%', height: '100%', position: 'relative', overflow: 'hidden' }}
               >
                 {project.image ? (
-                  <img src={project.image} alt={project.name} className="cube__image" style={{ width: '100%', height: '100%', objectFit: 'contain', padding: '2rem', pointerEvents: 'none' }} />
+                  <img src={project.image} alt={project.name} className="cube__image" style={{ width: '100%', height: '100%', objectFit: 'cover', padding: 0, pointerEvents: 'none' }} />
                 ) : (
                   <div className="cube__placeholder" style={{ background: CARD_GRADIENTS[i % CARD_GRADIENTS.length], width: '100%', height: '100%', display: 'flex', alignItems: 'center', justifyContent: 'center', pointerEvents: 'none' }}>
                     <span className="cube__initial" style={{ fontSize: '100px', fontWeight: '800', color: 'white', opacity: 0.1 }}>{initial}</span>

@@ -1922,29 +1922,30 @@ html:not(.dark) .header.header--inverse .theme-toggle-btn:hover {
   position: fixed;
   inset: 0;
   z-index: 9999;
-  background-color: rgba(0, 0, 0, 0.4);
+  background-color: rgba(0, 0, 0, 0.2);
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 20px;
+  padding: 24px;
 }
 
 .project-modal {
   position: relative;
-  background: rgba(25, 25, 30, 0.85);
-  backdrop-filter: blur(24px) saturate(1.5);
-  -webkit-backdrop-filter: blur(24px) saturate(1.5);
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  border-radius: 24px;
-  padding: 48px;
-  max-width: 500px;
+  background: var(--header-bg);
+  backdrop-filter: blur(40px) saturate(2);
+  -webkit-backdrop-filter: blur(40px) saturate(2);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: 32px;
+  padding: 56px 48px;
+  max-width: 540px;
   width: 100%;
-  box-shadow: 0 30px 60px rgba(0, 0, 0, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.1);
-  color: #ffffff;
+  box-shadow: 0 40px 80px rgba(0, 0, 0, 0.15), inset 0 1px 0 rgba(255, 255, 255, 0.2);
+  color: var(--color-ink);
   overflow: hidden;
+  text-align: left;
 }
 
-/* Subtle glow behind the modal content */
+/* Subtle glow behind the modal content (adapts slightly based on mode) */
 .project-modal::before {
   content: '';
   position: absolute;
@@ -1952,7 +1953,7 @@ html:not(.dark) .header.header--inverse .theme-toggle-btn:hover {
   left: -50%;
   width: 200%;
   height: 100%;
-  background: radial-gradient(circle at 50% 0%, rgba(255, 255, 255, 0.1), transparent 70%);
+  background: radial-gradient(circle at 50% 0%, rgba(255, 255, 255, 0.15), transparent 60%);
   pointer-events: none;
 }
 
@@ -1960,58 +1961,64 @@ html:not(.dark) .header.header--inverse .theme-toggle-btn:hover {
   position: absolute;
   top: 24px;
   right: 24px;
-  font-size: 28px;
-  color: rgba(255, 255, 255, 0.5);
-  transition: color 0.3s ease, transform 0.3s ease;
-  width: 40px;
-  height: 40px;
+  font-size: 32px;
+  font-weight: 300;
+  color: var(--color-graphite);
+  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  width: 48px;
+  height: 48px;
   display: flex;
   align-items: center;
   justify-content: center;
   border-radius: 50%;
-  background: rgba(255, 255, 255, 0.05);
+  background: transparent;
+  border: 1px solid transparent;
   z-index: 10;
+  cursor: none;
 }
 
 .project-modal__close:hover {
-  color: #ffffff;
-  background: rgba(255, 255, 255, 0.1);
-  transform: rotate(90deg);
+  color: var(--color-ink);
+  background: rgba(150, 150, 150, 0.1);
+  transform: rotate(90deg) scale(1.1);
 }
 
 .project-modal__title {
   font-family: var(--font-display);
-  font-size: 42px;
-  margin-bottom: 16px;
-  letter-spacing: -0.02em;
-  color: #ffffff;
+  font-size: 48px;
+  margin-bottom: 24px;
+  letter-spacing: -0.03em;
+  color: var(--color-ink);
+  line-height: 1.1;
 }
 
 .project-modal__desc {
   font-family: var(--font-body);
-  font-size: 15px;
-  line-height: 1.6;
-  color: rgba(255, 255, 255, 0.75);
-  margin-bottom: 32px;
+  font-size: 16px;
+  line-height: 1.7;
+  color: var(--color-graphite);
+  margin-bottom: 40px;
 }
 
 .project-modal__tech {
   display: flex;
   flex-wrap: wrap;
-  gap: 8px;
-  margin-bottom: 40px;
+  gap: 10px;
+  margin-bottom: 48px;
 }
 
 .project-modal__tag {
   font-family: var(--font-body);
   font-size: 11px;
+  font-weight: 600;
   text-transform: uppercase;
-  letter-spacing: 0.05em;
-  padding: 6px 14px;
-  background: rgba(255, 255, 255, 0.05);
-  border: 1px solid rgba(255, 255, 255, 0.1);
+  letter-spacing: 0.1em;
+  padding: 8px 16px;
+  background: transparent;
+  border: 1px solid var(--color-graphite);
   border-radius: 100px;
-  color: #ffffff;
+  color: var(--color-graphite);
+  opacity: 0.8;
 }
 
 .project-modal__link {
@@ -2019,20 +2026,21 @@ html:not(.dark) .header.header--inverse .theme-toggle-btn:hover {
   align-items: center;
   justify-content: center;
   width: 100%;
-  padding: 16px;
-  background: #ffffff;
-  color: #000000;
+  padding: 20px;
+  background: var(--color-ink);
+  color: var(--color-paper);
   font-family: var(--font-body);
   font-size: 13px;
-  font-weight: 600;
+  font-weight: 700;
   text-transform: uppercase;
-  letter-spacing: 0.1em;
-  border-radius: 12px;
+  letter-spacing: 0.15em;
+  border-radius: 16px;
   text-decoration: none;
-  transition: transform 0.3s ease, background 0.3s ease;
+  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.4s ease;
+  cursor: none;
 }
 
 .project-modal__link:hover {
-  background: #e0e0e0;
-  transform: translateY(-2px);
+  transform: translateY(-4px);
+  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
 }
