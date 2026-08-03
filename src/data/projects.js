@@ -1,11 +1,11 @@
 const projects = [
   {
     id: 1,
-    name: 'Neural Canvas',
-    description: 'An AI-powered image generation platform that transforms text prompts into stunning artwork using diffusion models.',
-    tech: ['Python', 'PyTorch', 'React', 'FastAPI'],
-    link: '#',
-    image: null
+    name: 'SyncBoard',
+    description: 'A collaborative real-time whiteboard with syncing capabilities across multiple devices.',
+    tech: ['React', 'WebSockets', 'Next.js', 'Vercel'],
+    link: 'https://syncmyboard.vercel.app',
+    image: '/syncboard.png'
   },
   {
     id: 2,
