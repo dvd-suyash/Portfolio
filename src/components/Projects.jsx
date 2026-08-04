@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
+import { createPortal } from 'react-dom';
+import { DotLottieReact } from '@lottiefiles/dotlottie-react';
 import projects from '../data/projects';
 import ThreeCube from './ThreeCube';
 
@@ -113,41 +115,55 @@ const Projects = () => {
           />
         </motion.div>
 
-        {/* Elegant UI UX Pro Max Modal for Project Details */}
-        <AnimatePresence>
-          {selectedProject && (
-            <motion.div 
-              className="project-modal-overlay"
-              initial={{ opacity: 0, backdropFilter: "blur(0px)" }}
-              animate={{ opacity: 1, backdropFilter: "blur(12px)" }}
-              exit={{ opacity: 0, backdropFilter: "blur(0px)" }}
-              onClick={() => setSelectedProject(null)}
-            >
+        {/* Elegant UI UX Pro Max Modal for Project Details (Matches About Modal) */}
+        {createPortal(
+          <AnimatePresence>
+            {selectedProject && (
               <motion.div 
-                className="project-modal"
-                initial={{ y: 60, opacity: 0, scale: 0.95 }}
-                animate={{ y: 0, opacity: 1, scale: 1 }}
-                exit={{ y: 30, opacity: 0, scale: 0.95 }}
-                transition={{ type: "spring", damping: 25, stiffness: 300 }}
-                onClick={(e) => e.stopPropagation()}
+                className="about-modal-overlay"
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                exit={{ opacity: 0 }}
+                onClick={() => setSelectedProject(null)}
               >
-                <button className="project-modal__close" onClick={() => setSelectedProject(null)} aria-label="Close modal">×</button>
-                <h3 className="project-modal__title">{selectedProject.name}</h3>
-                <p className="project-modal__desc">{selectedProject.description}</p>
-                <div className="project-modal__tech">
-                  {selectedProject.tech.map((t) => (
-                    <span key={t} className="project-modal__tag">{t}</span>
-                  ))}
-                </div>
-                {selectedProject.link !== '#' && (
-                  <a href={selectedProject.link} target="_blank" rel="noopener noreferrer" className="project-modal__link">
-                    View Live Project →
-                  </a>
-                )}
+                <motion.div 
+                  className="about-modal-wrapper"
+                  initial={{ y: 60, opacity: 0, scale: 0.95 }}
+                  animate={{ y: 0, opacity: 1, scale: 1 }}
+                  exit={{ y: 30, opacity: 0, scale: 0.95 }}
+                  transition={{ type: "spring", damping: 25, stiffness: 300 }}
+                  onClick={(e) => e.stopPropagation()}
+                  role="dialog"
+                  aria-modal="true"
+                >
+                  <div className="about-modal-cat">
+                    <DotLottieReact
+                      src="https://lottie.host/8cf4ba71-e5fb-44f3-8134-178c4d389417/0CCsdcgNIP.json"
+                      loop
+                      autoplay
+                    />
+                  </div>
+                  <button className="about-modal-close" onClick={() => setSelectedProject(null)} aria-label="Close modal">×</button>
+                  <div className="about-modal-content" style={{ padding: '40px', color: '#faf6ef' }}>
+                    <h3 style={{ fontFamily: 'var(--font-display)', fontSize: '42px', marginBottom: '16px', letterSpacing: '-0.02em', lineHeight: '1.1' }}>{selectedProject.name}</h3>
+                    <p style={{ fontFamily: 'var(--font-body)', fontSize: '16px', lineHeight: '1.7', color: 'rgba(255,255,255,0.7)', marginBottom: '32px' }}>{selectedProject.description}</p>
+                    <div style={{ display: 'flex', flexWrap: 'wrap', gap: '8px', marginBottom: '40px' }}>
+                      {selectedProject.tech.map((t) => (
+                        <span key={t} style={{ fontFamily: 'var(--font-body)', fontSize: '11px', fontWeight: '600', textTransform: 'uppercase', letterSpacing: '0.1em', padding: '6px 14px', background: 'transparent', border: '1px solid rgba(255,255,255,0.2)', borderRadius: '100px', color: 'rgba(255,255,255,0.8)' }}>{t}</span>
+                      ))}
+                    </div>
+                    {selectedProject.link !== '#' && (
+                      <a href={selectedProject.link} target="_blank" rel="noopener noreferrer" style={{ display: 'inline-flex', alignItems: 'center', justifyContent: 'center', width: '100%', padding: '16px', background: '#faf6ef', color: '#1a1a1a', fontFamily: 'var(--font-body)', fontSize: '13px', fontWeight: '700', textTransform: 'uppercase', letterSpacing: '0.15em', borderRadius: '12px', textDecoration: 'none', transition: 'transform 0.3s' }} onMouseEnter={(e) => e.currentTarget.style.transform = 'translateY(-2px)'} onMouseLeave={(e) => e.currentTarget.style.transform = 'translateY(0)'}>
+                        View Live Project →
+                      </a>
+                    )}
+                  </div>
+                </motion.div>
               </motion.div>
-            </motion.div>
-          )}
-        </AnimatePresence>
+            )}
+          </AnimatePresence>,
+          document.body
+        )}
       </div>
     </section>
   );
