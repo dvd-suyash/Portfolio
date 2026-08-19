@@ -12,7 +12,7 @@ const projects = [
     name: 'Tangent',
     description: 'An entirely autonomous, self-governing AI agent that schedules itself via Cloudflare Cron, researches independently via Tavily, and publishes contrarian insights to Threads.',
     tech: ['TypeScript', 'Cloudflare Workers', 'Llama-3', 'Cloudflare D1', 'Tavily API', 'Threads API'],
-    link: 'https://github.com/dvd-suyash/Autonomous-AI-Creator',
+    link: 'https://tangent.suyashdwivedi.workers.dev/',
     image: '/robo3.jpg'
   },
   {
