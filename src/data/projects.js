@@ -9,10 +9,10 @@ const projects = [
   },
   {
     id: 2,
-    name: 'CloudVault',
-    description: 'A distributed cloud storage system with end-to-end encryption, real-time sync, and collaborative file sharing.',
-    tech: ['Go', 'AWS S3', 'React', 'PostgreSQL'],
-    link: '#',
+    name: 'Tangent',
+    description: 'An entirely autonomous, self-governing AI agent that schedules itself via Cloudflare Cron, researches independently via Tavily, and publishes contrarian insights to Threads.',
+    tech: ['TypeScript', 'Cloudflare Workers', 'Llama-3', 'Cloudflare D1', 'Tavily API', 'Threads API'],
+    link: 'https://github.com/dvd-suyash/Autonomous-AI-Creator',
     image: null
   },
   {
