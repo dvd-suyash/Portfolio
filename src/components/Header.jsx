@@ -149,7 +149,7 @@ const Header = ({ onOpenAbout, isDarkMode, toggleTheme }) => {
           Contact
         </NavLink>
         <a 
-          href="/Suyash_Dwivedi_Resume.pdf" 
+          href="/SuyashDwivediResume.pdf" 
           target="_blank" 
           data-magnetic
           rel="noopener noreferrer" 
