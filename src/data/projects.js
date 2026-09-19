@@ -17,11 +17,11 @@ const projects = [
   },
   {
     id: 3,
-    name: 'Pulse Analytics',
-    description: 'Real-time data visualization dashboard for monitoring system health metrics across distributed infrastructure.',
-    tech: ['TypeScript', 'D3.js', 'Node.js', 'Redis'],
-    link: '#',
-    image: null
+    name: 'Game Of Tag',
+    description: 'An interactive real-time multiplayer game of tag.',
+    tech: ['Node.js', 'Socket.io', 'Render'],
+    link: 'https://tag-30d5.onrender.com/',
+    image: '/game-of-tag.png'
   },
   {
     id: 4,
