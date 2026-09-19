@@ -21,7 +21,7 @@ const projects = [
     description: 'An interactive real-time multiplayer game of tag.',
     tech: ['Node.js', 'Socket.io', 'Render'],
     link: 'https://tag-30d5.onrender.com/',
-    image: '/game-of-tag.png'
+    image: '/game-of-tag-2.png'
   },
   {
     id: 4,
