@@ -165,6 +165,16 @@ export function GenerativeMountainScene({ isDarkMode }) {
       if (!isVisible) return; // Pause GPU processing when scrolled out of view
       
       material.uniforms.time.value = t * 0.0003;
+
+      // Lock light position for mobile to perfectly match the requested screenshot aesthetic
+      if (window.innerWidth <= 768) {
+        const staticPos = new THREE.Vector3(0, 2, 0.8);
+        lightRef.current.position.copy(staticPos);
+        if (material.uniforms.pointLightPosition) {
+             material.uniforms.pointLightPosition.value = staticPos;
+        }
+      }
+
       renderer.render(scene, camera);
     };
     frameId = requestAnimationFrame(animate);
