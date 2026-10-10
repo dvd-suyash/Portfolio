@@ -25,10 +25,10 @@ const projects = [
   },
   {
     id: 4,
-    name: 'EchoChat',
-    description: 'An end-to-end encrypted messaging platform with voice notes, file sharing, and ephemeral messages.',
-    tech: ['React Native', 'Socket.io', 'MongoDB', 'WebRTC'],
-    link: '#',
+    name: 'CineRec',
+    description: 'An intelligent, AI-driven cinematic exploration engine with a voice-driven conversational agent, real-time streaming, and a persistent Taste Profile using Gemini AI and pgvector.',
+    tech: ['Next.js', 'FastAPI', 'PostgreSQL', 'Celery', 'Redis', 'Gemini AI', 'TMDB'],
+    link: 'https://givemerecco.vercel.app',
     image: null
   },
   {
