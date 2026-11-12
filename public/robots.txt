@@ -1,0 +1,15 @@
+# World-Class Search Engine Crawling Directive for Suyash Dwivedi Portfolio
+# https://suyash-dwivedi.vercel.app
+
+User-agent: *
+Allow: /
+Allow: /projects
+Allow: /skills
+Allow: /contact
+Allow: /SuyashDwivediResume.pdf
+
+# Disallow build and temporary assets
+Disallow: /assets/*.map
+
+# Official XML Sitemap
+Sitemap: https://suyash-dwivedi.vercel.app/sitemap.xml

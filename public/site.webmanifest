@@ -1,0 +1,17 @@
+{
+  "name": "Suyash Dwivedi — Computer Science Engineer & Full-Stack AI Developer",
+  "short_name": "Suyash Dwivedi",
+  "description": "Official portfolio of Suyash Dwivedi. Full-Stack Developer, AI Engineer, and Systems Architect.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#0c0e12",
+  "theme_color": "#0c0e12",
+  "icons": [
+    {
+      "src": "/favicon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ]
+}

@@ -13,6 +13,7 @@ import Footer from './components/Footer';
 import GlobalScrollLine from './components/GlobalScrollLine';
 import Preloader from './components/Preloader';
 import { MagneticCursor } from './components/MagneticCursor';
+import SEO from './components/SEO';
 
 export let appHasLoaded = false;
 
@@ -136,6 +137,7 @@ const App = () => {
       }} />}
       
       <div style={{ display: 'flex', flexDirection: 'column', minHeight: '100vh' }}>
+        <SEO />
         <motion.div
           className="scroll-progress-bar"
           style={{ scaleX }}

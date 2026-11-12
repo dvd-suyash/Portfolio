@@ -61,6 +61,7 @@ const Hero = ({ onOpenAbout, isDarkMode }) => {
         </motion.p>
 
         <motion.h1 className="hero__title" variants={itemVars}>
+          <span className="sr-only">Suyash Dwivedi — </span>
           Crafting Digital
           <br />
           <em>Experiences</em>
