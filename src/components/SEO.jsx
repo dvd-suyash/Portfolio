@@ -5,22 +5,22 @@ const routeMeta = {
   '/': {
     title: 'Suyash Dwivedi | Computer Science Engineer & Full-Stack AI Developer',
     description: 'Official portfolio of Suyash Dwivedi — Computer Science Engineer & Full-Stack AI Developer. Specializing in scalable web systems, autonomous AI agents, and interactive 3D digital experiences.',
-    canonical: 'https://suyash-dwivedi.vercel.app/'
+    canonical: 'https://suyashdwivedi.in/'
   },
   '/projects': {
     title: 'Projects | Suyash Dwivedi — AI Systems & Full-Stack Engineering',
     description: 'Explore signature projects by Suyash Dwivedi: CineRec (AI Recommendation Engine), Tangent (Autonomous AI Agent on Cloudflare), SyncBoard, and Game Of Tag.',
-    canonical: 'https://suyash-dwivedi.vercel.app/projects'
+    canonical: 'https://suyashdwivedi.in/projects'
   },
   '/skills': {
     title: 'Technical Skills & Architecture | Suyash Dwivedi',
     description: 'Technical proficiencies of Suyash Dwivedi: Python, TypeScript, React, Next.js, Node.js, FastAPI, PostgreSQL, Cloudflare Workers, Three.js, Docker, and Distributed Systems.',
-    canonical: 'https://suyash-dwivedi.vercel.app/skills'
+    canonical: 'https://suyashdwivedi.in/skills'
   },
   '/contact': {
     title: 'Contact & Connect | Suyash Dwivedi — Software Engineer',
     description: 'Connect with Suyash Dwivedi for software engineering roles, AI system architecture, and freelance collaborations. Reach out via Email, GitHub, or LinkedIn.',
-    canonical: 'https://suyash-dwivedi.vercel.app/contact'
+    canonical: 'https://suyashdwivedi.in/contact'
   }
 };
 

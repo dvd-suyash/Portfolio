@@ -1,5 +1,5 @@
 # World-Class Search Engine Crawling Directive for Suyash Dwivedi Portfolio
-# https://suyash-dwivedi.vercel.app
+# https://suyashdwivedi.in
 
 User-agent: *
 Allow: /
@@ -12,4 +12,4 @@ Allow: /SuyashDwivediResume.pdf
 Disallow: /assets/*.map
 
 # Official XML Sitemap
-Sitemap: https://suyash-dwivedi.vercel.app/sitemap.xml
+Sitemap: https://suyashdwivedi.in/sitemap.xml
